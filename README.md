@@ -14,5 +14,5 @@ Popularly known within the design world, Atomic Design helps to build consistent
 
 => Pages : Pages are the navigate parts of the application and it’s where the components are distributed in one specific template. 
 
-Read more about #AtomicDesign : https://github.com/danilowoz/react-atomic-design 
+Read more about Atomic Design : https://github.com/danilowoz/react-atomic-design 
 
