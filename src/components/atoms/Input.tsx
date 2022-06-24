@@ -29,6 +29,11 @@ export const Input = () => {
     }
 
 
+    const removeItem = () => {
+
+        const newList = arrayData.filter((item:ICardItem) => item.id !== item.id)
+        setArrayData(newList);
+    }
 
 
     return (
@@ -48,7 +53,10 @@ export const Input = () => {
                               <span className="text-2xl">{elem.text}</span> 
                               <button className='cursor-pointer bg-green-500 px-2 py-2'><FaCheckSquare className='cursor-pointer' /></button>
 
-                              <button className='cursor-pointer bg-red-500 px-2 py-2'><FaTimes /></button>
+                              <button onClick={removeItem}
+                              className='cursor-pointer bg-red-500 px-2 py-2'>
+                                <FaTimes />
+                              </button>
                             </li>
                         
                         ) )}
