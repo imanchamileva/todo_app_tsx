@@ -3,13 +3,20 @@ import React, { ChangeEvent } from 'react'
 import {useState} from 'react'
 import { FaCheckSquare } from "react-icons/fa";
 import { FaTimes } from "react-icons/fa";
+import { MouseEventHandler } from 'react';
 
 
+  type ICardItem = {
+    title: string;
+    id: number;
+    };
 
-type ICardItem = {
-text: string;
-id: number;
-  };
+  type IUser = {
+    title: string;
+    id: number;
+ 
+  }
+
 
 export const Input = () => {
 
@@ -31,10 +38,12 @@ export const Input = () => {
     }
 
 
-    const removeItem = (id: number) : void => {
+    const removeItem = (id: any)  => {
 
-        const newList = arrayData.filter((item: ICardItem) => item.id != id)
+  
+        const newList = arrayData.filter((item: ICardItem) => item.id !== id)
         setArrayData(newList);
+      
     }
 
 
@@ -52,7 +61,7 @@ export const Input = () => {
                 <ul>
                         {arrayData.map((elem : ICardItem) => (
                             <li key={elem.id}>
-                              <span className="text-2xl">{elem.text}</span> 
+                              <span className="text-2xl">{elem.title}</span> 
                               <button className='cursor-pointer bg-green-500 px-2 py-2'><FaCheckSquare className='cursor-pointer' /></button>
 
                               <button onClick={removeItem}
