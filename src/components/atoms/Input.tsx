@@ -6,13 +6,14 @@ import { FaTimes } from "react-icons/fa";
 import { MouseEventHandler } from 'react';
 
 
-  type ICardItem = {
+  interface ICardItem {
     title: string;
     id: number;
+    completed: boolean;
     };
 
   type IUser = {
-    title: string;
+    
     id: number;
  
   }
@@ -30,7 +31,7 @@ export const Input = () => {
 }
 
 
-    const onButtonClick = (e :React.FormEvent<HTMLFormElement> ) :void => {
+    const addItem = (e :React.FormEvent<HTMLFormElement> ) :void => {
     e.preventDefault();
     let newEntry = {id :nanoid, title: getInput, completed: false}
     setArrayData([...arrayData, newEntry]);
@@ -38,41 +39,39 @@ export const Input = () => {
     }
 
 
-    const removeItem = (id: any)  => {
+    const removeItem = () : void => {
 
-  
-        const newList = arrayData.filter((item: ICardItem) => item.id !== id)
-        setArrayData(newList);
       
+        const newList = arrayData.filter((item: ICardItem, index: ICardItem) => item.id === index.id)
+        setArrayData(newList);
+        console.log('my new list',newList);
     }
+
 
 
     return (
         <>
-            <form onSubmit={onButtonClick}>
+            <form onSubmit={addItem}>
                 <input type="text" 
                 value={getInput} 
                 onChange={handleChange} 
                 className="border-2 rounded" />
-
                 <button className="px-8 py-1 bg-green-600 text-white rounded">Add</button>
             </form>
             <div>
-                <ul>
-                        {arrayData.map((elem : ICardItem) => (
-                            <li key={elem.id}>
-                              <span className="text-2xl">{elem.title}</span> 
+                        {arrayData.map((elem : ICardItem, index: IUser) => (
+                            <ul key={index.id}>
+                              <li className="text-2xl">{elem.title}</li> 
                               <button className='cursor-pointer bg-green-500 px-2 py-2'><FaCheckSquare className='cursor-pointer' /></button>
 
                               <button onClick={removeItem}
                               className='cursor-pointer bg-red-500 px-2 py-2'>
                                 <FaTimes />
                               </button>
-                            </li>
+                            </ul>
                         
-                        ) )}
-
-                </ul>
+                        )
+                          )}             
             </div>
         </>
     )
