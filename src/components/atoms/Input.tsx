@@ -3,7 +3,7 @@ import React, { ChangeEvent } from 'react'
 import {useState} from 'react'
 import { FaCheckSquare } from "react-icons/fa";
 import { FaTimes } from "react-icons/fa";
-import { MouseEventHandler } from 'react';
+import { MouseEvent } from 'react';
 
 
   interface ICardItem {
@@ -33,16 +33,16 @@ export const Input = () => {
 
     const addItem = (e :React.FormEvent<HTMLFormElement> ) :void => {
     e.preventDefault();
-    let newEntry = {id :nanoid, title: getInput, completed: false}
+    let newEntry = {id :nanoid(), title: getInput, completed: false}
     setArrayData([...arrayData, newEntry]);
     setGetInput('')
     }
 
 
-    const removeItem = () : void => {
+    const removeItem = (e: React.MouseEvent<HTMLButtonElement>) :void  => {
 
-      
-        const newList = arrayData.filter((item: ICardItem, index: ICardItem) => item.id === index.id)
+      e.preventDefault()
+        const newList = arrayData.filter((item: ICardItem, index: ICardItem) => item.id !== index.id)
         setArrayData(newList);
         console.log('my new list',newList);
     }
