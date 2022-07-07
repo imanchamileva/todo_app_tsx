@@ -3,25 +3,13 @@ import React, { ChangeEvent } from 'react'
 import {useState} from 'react'
 import { FaCheckSquare } from "react-icons/fa";
 import { FaTimes } from "react-icons/fa";
-import { MouseEvent } from 'react';
+import { ITodoItem, IUser } from '../../Interfaces';
 
-
-  interface ICardItem {
-    title: string;
-    id: number;
-    completed: boolean;
-    };
-
-  type IUser = {
-    
-    id: number;
- 
-  }
 
 
 export const Input = () => {
 
-    const [getInput, setGetInput] = useState<any>('');
+    const [getInput, setGetInput] = useState<string>('lala');
     const [arrayData, setArrayData] = useState<any>([]);
 
 
@@ -33,16 +21,19 @@ export const Input = () => {
 
     const addItem = (e :React.FormEvent<HTMLFormElement> ) :void => {
     e.preventDefault();
-    let newEntry = {id :nanoid(), title: getInput, completed: false}
-    setArrayData([...arrayData, newEntry]);
+    //create new todo
+    let newTask = {id :nanoid(), title: getInput, completed: false}
+    //add todo to the state
+    setArrayData([...arrayData, newTask]);
+    //clear the value of the task
     setGetInput('')
     }
 
 
-    const removeItem = (e: React.MouseEvent<HTMLButtonElement>) :void  => {
+    const removeItem = (id:number)   => {
 
-      e.preventDefault()
-        const newList = arrayData.filter((item: ICardItem, index: ICardItem) => item.id !== index.id)
+   
+        const newList = arrayData.filter((item: ITodoItem) => item.id !== id)
         setArrayData(newList);
         console.log('my new list',newList);
     }
@@ -59,14 +50,14 @@ export const Input = () => {
                 <button className="px-8 py-1 bg-green-600 text-white rounded">Add</button>
             </form>
             <div>
-                        {arrayData.map((elem : ICardItem, index: IUser) => (
-                            <ul key={index.id}>
+                        {arrayData.map((elem : ITodoItem) => (
+                            <ul key={elem.id}>
                               <li className="text-2xl">{elem.title}</li> 
                               <button className='cursor-pointer bg-green-500 px-2 py-2'><FaCheckSquare className='cursor-pointer' /></button>
 
-                              <button onClick={removeItem}
+                              <button onClick={() => removeItem(elem.id)}
                               className='cursor-pointer bg-red-500 px-2 py-2'>
-                                <FaTimes />
+                               <FaTimes />
                               </button>
                             </ul>
                         
