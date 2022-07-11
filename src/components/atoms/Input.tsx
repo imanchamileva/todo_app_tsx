@@ -9,9 +9,10 @@ import { ITodoItem, IUser } from '../../Interfaces';
 
 export const Input = () => {
 
-    const [getInput, setGetInput] = useState<string>('lala');
+    const [getInput, setGetInput] = useState<string>('');
     const [arrayData, setArrayData] = useState<any>([]);
-    const [editData, setEditData] = useState<any>('')
+    const [todoEditing, setTodoEditing] = useState<any>(false)
+    const [editingText, setEditingText] = useState<any>(null);
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) : void => {
     setGetInput(e.target.value)
@@ -38,14 +39,12 @@ export const Input = () => {
         console.log('my new list',newList);
     }
 
-    const editItem = (id: number) => {
-      const updatedItem = arrayData.map((item : ITodoItem) => {
-
-    
-      })
+    const editItem = (index: number, lala:string) => {
+      const updatedItem = arrayData.map((item:ITodoItem, ind: number) => item.id === index ? {...item, lala} : item)
       setArrayData(updatedItem);
-      console.log('updated array',updatedItem);
-      setEditData(true)
+      console.log('edited array',updatedItem);
+      setTodoEditing(true)
+
     }
 
 
@@ -62,7 +61,7 @@ export const Input = () => {
                         {arrayData.map((elem : ITodoItem) => (
                             <ul key={elem.id}>
                               <li className="text-2xl">{elem.title}</li> 
-                              <button onClick={() => editItem(elem.id)} className='cursor-pointer bg-green-500 px-2 py-2'><FaCheckSquare className='cursor-pointer' /></button>
+                              <button onClick={() => editItem(elem.id, elem.title)} className='cursor-pointer bg-green-500 px-2 py-2'><FaCheckSquare className='cursor-pointer' /></button>
 
                               <button onClick={() => removeItem(elem.id)}
                               className='cursor-pointer bg-red-500 px-2 py-2'>
