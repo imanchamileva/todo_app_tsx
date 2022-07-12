@@ -12,7 +12,8 @@ export const Input = () => {
     const [getInput, setGetInput] = useState<string>('');
     const [arrayData, setArrayData] = useState<any>([]);
     const [todoEditing, setTodoEditing] = useState<any>(false)
-    const [editingText, setEditingText] = useState<any>(null);
+    const [editingText, setEditingText] = useState<any>('');
+    const [newEditedArray, setNewEditedArray] = useState<any>('')
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) : void => {
     setGetInput(e.target.value)
@@ -32,22 +33,23 @@ export const Input = () => {
 
 
     const removeItem = (id:number)   => {
-
-   
         const newList = arrayData.filter((item: ITodoItem) => item.id !== id)
         setArrayData(newList);
         console.log('my new list',newList);
     }
 
-    const editItem = (index: number, lala:string) => {
-      const updatedItem = arrayData.map((item:ITodoItem, ind: number) => item.id === index ? {...item, lala} : item)
-      setArrayData(updatedItem);
-      console.log('edited array',updatedItem);
-      setTodoEditing(true)
+    const editItem = (index: number, newName: string) => {
+        const newList = arrayData.map((item: ITodoItem) => {
+            if (item.id === index) {
+                return {...arrayData, title:newName}
+         }
+         return arrayData;
+        })
+            console.log('the new list',newList);
+            setArrayData(newList)
+            
 
     }
-
-
     return (
         <>
             <form onSubmit={addItem}>
