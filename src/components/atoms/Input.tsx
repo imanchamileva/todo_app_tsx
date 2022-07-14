@@ -3,7 +3,7 @@ import React, { ChangeEvent } from 'react'
 import {useState, useEffect} from 'react'
 import { FaCheckSquare } from "react-icons/fa";
 import { FaTimes } from "react-icons/fa";
-import { ITodoItem, IUser } from '../../Interfaces';
+import { ITodoItem} from '../../Interfaces';
 
 
 
@@ -14,6 +14,8 @@ export const Input = () => {
     const [editTodo, setEditTodo] = useState<any>(null)
     const [inputChange, setInputChange] = useState<any>('');
     const [newEditedArray, setNewEditedArray] = useState<any>('')
+
+
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) : void => {
     setGetInput(e.target.value)
@@ -43,21 +45,27 @@ export const Input = () => {
     }
 
     const editItem = (id: number, title: string, completed: boolean) => {
-        const newList = arrayData.map((item: ITodoItem) => {
-            item.id === id ? {...arrayData, title, completed} : item;
-        })
-        setArrayData(newList);
+        const newList = arrayData.map((item: ITodoItem) =>
+            item.id === id ? {id, title, completed} : item
+        );
+        setArrayData(newList)
         setEditTodo("")
-        console.log('the new list',newList);
-        
+        console.log('the new list',newList)
+        };
         useEffect(() => {
             if(editTodo) {
                 setGetInput(editTodo.title);
             } else {
-                setGetInput("")
+                setGetInput("");
             }
         },[setGetInput, editTodo]);
-    }
+    
+
+        const handleEdit = (id: number) => {
+            const findTodo= arrayData.find((item: ITodoItem) => item.id === id);
+            setEditTodo(findTodo);
+        }
+    
 
     return (
         <>
@@ -66,13 +74,15 @@ export const Input = () => {
                 value={getInput} 
                 onChange={handleChange} 
                 className="border-2 rounded" />
-                <button className="px-8 py-1 bg-green-600 text-white rounded">Add</button>
+                <button className="px-8 py-1 bg-green-600 text-white rounded">
+                    {editTodo ? "Ok" : "Add"}
+                </button>
             </form>
             <div>
                         {arrayData.map((elem : ITodoItem) => (
                             <ul key={elem.id}>
                               <li className="text-2xl">{elem.title}</li> 
-                              <button onClick={() => editItem(elem.id, elem.title, elem.completed)} className='cursor-pointer bg-green-500 px-2 py-2'><FaCheckSquare className='cursor-pointer' /></button>
+                              <button onClick={() => handleEdit(elem.id)} className='cursor-pointer bg-green-500 px-2 py-2'><FaCheckSquare className='cursor-pointer' /></button>
 
                               <button onClick={() => removeItem(elem.id)}
                               className='cursor-pointer bg-red-500 px-2 py-2'>
@@ -86,3 +96,5 @@ export const Input = () => {
         </>
     )
 }
+
+
