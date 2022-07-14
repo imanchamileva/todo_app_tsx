@@ -1,10 +1,10 @@
 import { nanoid } from 'nanoid';
 import React, { ChangeEvent } from 'react'
 import {useState, useEffect} from 'react'
-import { FaCheckSquare } from "react-icons/fa";
-import { FaTimes } from "react-icons/fa";
+import { HiOutlinePencilAlt } from "react-icons/hi";
+import { FaTimes, FaTrashAlt } from "react-icons/fa";
 import { ITodoItem} from '../../Interfaces';
-
+import { HiPencilAlt } from "react-icons/hi";
 
 
 export const Input = () => {
@@ -75,18 +75,18 @@ export const Input = () => {
                 onChange={handleChange} 
                 className="border-2 rounded" />
                 <button className="px-8 py-1 bg-green-600 text-white rounded">
-                    {editTodo ? "Ok" : "Add"}
+                    {editTodo ? "Save" : "Add"}
                 </button>
             </form>
             <div>
                         {arrayData.map((elem : ITodoItem) => (
                             <ul key={elem.id}>
                               <li className="text-2xl">{elem.title}</li> 
-                              <button onClick={() => handleEdit(elem.id)} className='cursor-pointer bg-green-500 px-2 py-2'><FaCheckSquare className='cursor-pointer' /></button>
+                              <button onClick={() => handleEdit(elem.id)} className='cursor-pointer bg-green-500 px-2 py-2'><HiPencilAlt className='cursor-pointer' /></button>
 
                               <button onClick={() => removeItem(elem.id)}
                               className='cursor-pointer bg-red-500 px-2 py-2'>
-                               <FaTimes />
+                               <FaTrashAlt />
                               </button>
                             </ul>
                         
