@@ -5,7 +5,7 @@ import { HiOutlinePencilAlt } from "react-icons/hi";
 import { FaTimes, FaTrashAlt } from "react-icons/fa";
 import { ITodoItem} from '../../Interfaces';
 import { HiPencilAlt } from "react-icons/hi";
-
+import StyledButton from './StyledButton';
 
 export const Input = () => {
 
@@ -67,6 +67,7 @@ export const Input = () => {
         }
     
 
+
     return (
         <>
             <form onSubmit={addItem}>
@@ -80,14 +81,15 @@ export const Input = () => {
             </form>
             <div>
                         {arrayData.map((elem : ITodoItem) => (
-                            <ul key={elem.id}>
+                            <ul key={elem.id} className="space-x-2">
                               <li className="text-2xl">{elem.title}</li> 
-                              <button onClick={() => handleEdit(elem.id)} className='cursor-pointer bg-green-500 px-2 py-2'><HiPencilAlt className='cursor-pointer' /></button>
+                              <button onClick={() => handleEdit(elem.id)} className='cursor-pointer bg-purple-500 px-2 py-2 rounded'><HiPencilAlt className='cursor-pointer' /></button>
 
                               <button onClick={() => removeItem(elem.id)}
-                              className='cursor-pointer bg-red-500 px-2 py-2'>
+                              className='cursor-pointer bg-red-500 px-2 py-2 rounded'>
                                <FaTrashAlt />
                               </button>
+                             <StyledButton> <button id="completedButton" className="bg-yellow-400 rounded px-4 py-2 "><h3>completed</h3></button></StyledButton>
                             </ul>
                         
                         )
