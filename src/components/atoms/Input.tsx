@@ -89,7 +89,7 @@ export const Input = () => {
                               className='cursor-pointer bg-red-500 px-2 py-2 rounded'>
                                <FaTrashAlt />
                               </button>
-                             <StyledButton> <button id="completedButton" className="bg-yellow-400 rounded px-4 py-2 "><h3>completed</h3></button></StyledButton>
+                              <StyledButton color="primary">Completed</StyledButton>
                             </ul>
                         
                         )
