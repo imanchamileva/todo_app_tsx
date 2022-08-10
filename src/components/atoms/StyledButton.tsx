@@ -3,21 +3,18 @@ import styled from '@emotion/styled'
 
 type ButtonProps = {
     isPrimary ?: boolean;
-    color?: 'primary' | 'secondary';
     disabled ?: boolean;
-    size?: 'small' | 'medium' | 'large';
 }
 
 const StyledButton = styled.button((p:ButtonProps) => [
 tw`
 
-line-through
-bg-yellow-400
+bg-blue-500
 rounded
 px-4
 py-2
 `, 
-p.isPrimary? tw`bg-indigo-500` : tw`bg-white`
+p.isPrimary? tw`bg-yellow-500` : tw`bg-white`
 
 ]);
 
