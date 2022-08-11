@@ -1,11 +1,11 @@
 import { nanoid } from 'nanoid';
 import React, { ChangeEvent } from 'react'
 import {useState, useEffect} from 'react'
-import { HiOutlinePencilAlt } from "react-icons/hi";
-import { FaTimes, FaTrashAlt } from "react-icons/fa";
+import { FaTrashAlt } from "react-icons/fa";
 import { ITodoItem} from '../../Interfaces';
 import { HiPencilAlt } from "react-icons/hi";
 import StyledButton from './StyledButton';
+
 
 export const Input = () => {
 
@@ -13,9 +13,8 @@ export const Input = () => {
     const [arrayData, setArrayData] = useState<any>([]);
     const [editTodo, setEditTodo] = useState<any>(null)
     const [inputChange, setInputChange] = useState<any>('');
-    const [newEditedArray, setNewEditedArray] = useState<any>('')
-
-
+    const [newEditedArray, setNewEditedArray] = useState<any>(false)
+    const [textCompleted, setTextCompleted] = useState<any>(false)
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) : void => {
     setGetInput(e.target.value)
@@ -66,7 +65,11 @@ export const Input = () => {
             setEditTodo(findTodo);
         }
     
+        const handleCompleted = () : void => {
 
+            setTextCompleted(true)
+         
+        }
 
     return (
         <>
@@ -82,14 +85,14 @@ export const Input = () => {
             <div>
                         {arrayData.map((elem : ITodoItem) => (
                             <ul key={elem.id} className="space-x-2">
-                              <li className="text-2xl">{elem.title}</li> 
+                              <li className="text-2xl" style={{opacity : textCompleted ? 0.5 :1, textDecoration: textCompleted ? 'line-through' : 'none'}}>{elem.title}</li> 
                               <button onClick={() => handleEdit(elem.id)} className='cursor-pointer bg-purple-500 px-2 py-2 rounded'><HiPencilAlt className='cursor-pointer' /></button>
 
                               <button onClick={() => removeItem(elem.id)}
                               className='cursor-pointer bg-red-500 px-2 py-2 rounded'>
                                <FaTrashAlt />
                               </button>
-                              <StyledButton isPrimary={true} >Completed</StyledButton>
+                              <StyledButton isPrimary={true} onClick={handleCompleted} >Completed</StyledButton>
                             </ul>
                         
                         )
