@@ -65,9 +65,11 @@ export const Input = () => {
             setEditTodo(findTodo);
         }
     
-        const handleCompleted = (completed:number) => {
- 
-            setTextCompleted(true)
+        const handleCompleted = (index:number) => {
+
+            let newTask = {id :nanoid(), title: getInput, completed: true}
+          
+            setArrayData(newTask)
          
         }
 
@@ -85,14 +87,15 @@ export const Input = () => {
             <div>
                         {arrayData.map((elem : ITodoItem) => (
                             <ul key={elem.id} className="space-x-2">
-                              <li className="text-2xl" style={{opacity : textCompleted ? 0.5 : 1, textDecoration: textCompleted ? 'line-through' : 'none'}}>{elem.title}</li> 
+                              <li className="text-2xl" style={{opacity : elem.completed ? 0.5 : 1, textDecoration: elem.completed ? 'line-through' : 'none'}}>{elem.title}</li> 
                               <button onClick={() => handleEdit(elem.id)} className='cursor-pointer bg-purple-500 px-2 py-2 rounded'><HiPencilAlt className='cursor-pointer' /></button>
 
                               <button onClick={() => removeItem(elem.id)}
                               className='cursor-pointer bg-red-500 px-2 py-2 rounded'>
                                <FaTrashAlt />
                               </button>
-                              <StyledButton isPrimary={true} onClick={() => handleCompleted(elem.id)} >Completed</StyledButton>
+                              <StyledButton isPrimary={true} onClick={() => handleCompleted(elem.id)} >Completed
+                              </StyledButton>
                             </ul>
                         
                         )
