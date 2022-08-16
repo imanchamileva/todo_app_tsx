@@ -12,15 +12,11 @@ export const Input = () => {
     const [getInput, setGetInput] = useState<string>('');
     const [arrayData, setArrayData] = useState<any>([]);
     const [editTodo, setEditTodo] = useState<any>(null)
-    const [inputChange, setInputChange] = useState<any>('');
-    const [newEditedArray, setNewEditedArray] = useState<any>(false)
-    const [textCompleted, setTextCompleted] = useState<any>(false)
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) : void => {
     setGetInput(e.target.value)
     console.log(e.target.value);
 }
-
 
     const addItem = (e :React.FormEvent<HTMLFormElement> ) :void => {
     e.preventDefault();
