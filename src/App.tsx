@@ -1,14 +1,10 @@
-import React from 'react';
 import './App.css';
-import {Input} from './components/atoms/Input'
-import { Title } from './components/atoms/Title';
-
+import {DefaultPage} from './components/templates/DefaultPage'
 
 function App() {
   return (
     <div className="App">
-      <Title />
-      <Input />
+      <DefaultPage />
     </div>
   );
 }
