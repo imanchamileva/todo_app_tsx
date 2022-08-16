@@ -65,11 +65,16 @@ export const Input = () => {
             setEditTodo(findTodo);
         }
     
-        const handleCompleted = (index:number) => {
+        const handleCompleted = (id:number) => {
 
-            let newTask = {id :nanoid(), title: getInput, completed: true}
-          
-            setArrayData(newTask)
+           const completeData = arrayData.map((item:ITodoItem) =>{
+            if(item.id === id ) {
+                return{...item, completed : !item.completed}
+            }
+            return item
+           })
+ 
+           setArrayData(completeData)
          
         }
 
