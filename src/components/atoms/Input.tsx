@@ -4,8 +4,7 @@ import {useState, useEffect} from 'react'
 import { FaTrashAlt } from "react-icons/fa";
 import { ITodoItem} from '../../Interfaces';
 import { HiPencilAlt } from "react-icons/hi";
-import StyledButton from './StyledButton';
-
+import {StyledButton} from './StyledButton'
 
 export const Input = () => {
 

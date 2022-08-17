@@ -6,7 +6,7 @@ type ButtonProps = {
     disabled ?: boolean;
 }
 
-const StyledButton = styled.button((p:ButtonProps) => [
+export const StyledButton = styled.button((p:ButtonProps) => [
 tw`
 
 bg-blue-500
