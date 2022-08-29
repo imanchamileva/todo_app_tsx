@@ -2,16 +2,18 @@ import AddNewTask from '../atoms/AddNewTask';
 import { Input } from '../atoms/Input'
 import StyledButton from '../atoms/StyledButton';
 import { Title } from '../atoms/Title';
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 export const DefaultPage = () => {
 
-    const [showInput, setShowInput] = useState<any>('');
+    const [showInput, setShowInput] = useState<any>(false);
 
 
-    const showInputHandle = () => {
+    const showInputHandle = ()  => {
+      
+        setShowInput(true)
+        console.log(!showInput);
         
-        setShowInput('lala')
     }
     return (
         <section className="h-screen w-100 bg-gradient-to-r from-green-500 to-yellow-500 flex justify-center items-center">
@@ -19,7 +21,7 @@ export const DefaultPage = () => {
                 <StyledButton><Title text="Add a new task" /></StyledButton>
                 <Title text="My Tasks" />
                 {showInput && (
-                    <div onClick={() => showInputHandle}>
+                    <div onClick={() => showInputHandle()}>
                         <Input />
                     </div>
                 )
