@@ -1,9 +1,10 @@
+import { ITitle } from "../../Interfaces"
 
 
-export const Title = () => {
+export const Title = (props:ITitle) => {
 
   return (
-    <div className="text-white">Todo App</div>
+    <div className="text-gray-800 text-3xl font-black">{props.text}</div>
   )
 }
  

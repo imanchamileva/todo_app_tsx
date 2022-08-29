@@ -8,3 +8,9 @@ export interface IUser{
     id: number;
  
   }
+
+  export type ITitle = {
+    text: string;
+
+  }
+
