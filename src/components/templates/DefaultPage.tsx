@@ -18,7 +18,7 @@ export const DefaultPage = () => {
             <section className="h-2/3 bg-gray-100 rounded-xl w-2/3 flex flex-col items-center justify-around">
             <Title text="My Tasks" />
             {hideButton &&
-                <StyledButton isPrimary={true} onClick={showInputHandle}><Title text="Add a new task" /></StyledButton>
+                <StyledButton isSecondary={true} onClick={showInputHandle}><Title text="Add a new task" /></StyledButton>
             }
                   {showInput && (
                 <Input />

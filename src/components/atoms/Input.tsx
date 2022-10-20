@@ -80,7 +80,7 @@ export const Input = () => {
                 value={getInput} 
                 onChange={handleChange} 
                 className="border-2 rounded" />
-                <StyledButton isPrimary={true} className="px-8 py-1 bg-green-600 text-white rounded">
+                <StyledButton isPrimary={false}>
                     {editTodo ? "Save" : "Add"}
                 </StyledButton>
             </form>
@@ -94,7 +94,7 @@ export const Input = () => {
                               className='cursor-pointer bg-red-500 px-2 py-2 rounded'>
                                <FaTrashAlt />
                               </button>
-                              <StyledButton isPrimary={true} onClick={() => handleCompleted(elem.id)} >Completed
+                              <StyledButton isSecondary={false} onClick={() => handleCompleted(elem.id)} >Completed
                               </StyledButton>
                             </ul>
                         
