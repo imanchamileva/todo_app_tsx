@@ -15,8 +15,8 @@ rounded
 px-4
 py-2
 `, 
-p.isPrimary? tw`bg-yellow-500` : tw`bg-white`,
-p.isSecondary? tw`bg-yellow-500 w-48 h-12` : tw `bg-white`
+p.isPrimary? tw`bg-purple-500 w-36 h-10 text-white` : tw`bg-black text-white w-36 h-10`,
+p.isSecondary? tw`bg-gray-500 w-48 h-10 text-white` : tw `bg-pink-800 text-white  w-36 h-10`
 
 ]);
 

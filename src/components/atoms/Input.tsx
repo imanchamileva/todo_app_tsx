@@ -80,9 +80,9 @@ export const Input = () => {
                 value={getInput} 
                 onChange={handleChange} 
                 className="border-2 rounded" />
-                <button className="px-8 py-1 bg-green-600 text-white rounded">
+                <StyledButton isPrimary={true} className="px-8 py-1 bg-green-600 text-white rounded">
                     {editTodo ? "Save" : "Add"}
-                </button>
+                </StyledButton>
             </form>
             <div>
                         {arrayData.map((elem : ITodoItem) => (

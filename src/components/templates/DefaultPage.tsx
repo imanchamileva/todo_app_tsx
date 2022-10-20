@@ -14,11 +14,11 @@ export const DefaultPage = () => {
     }
 
     return (
-        <section className="h-screen w-100 bg-gradient-to-r from-green-500 to-yellow-500 flex justify-center items-center">
+        <section className="h-screen w-100 bg-gradient-to-r from-blue-800 to-blue-500 flex justify-center items-center">
             <section className="h-2/3 bg-gray-100 rounded-xl w-2/3 flex flex-col items-center justify-around">
             <Title text="My Tasks" />
             {hideButton &&
-                <StyledButton isSecondary={true} onClick={showInputHandle}><Title text="Add a new task" /></StyledButton>
+                <StyledButton isPrimary={true} onClick={showInputHandle}><Title text="Add a new task" /></StyledButton>
             }
                   {showInput && (
                 <Input />
